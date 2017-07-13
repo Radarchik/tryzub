@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/tryzub</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+
+    <mapping resource="entities/Dating.hbm.xml"/>
+      <mapping class="entities.Dating"/>
+    <mapping resource="entities/Post.hbm.xml"/>
+    <mapping class="entities.Post"/>
+    <mapping class="entities.Topic"/>
+    <mapping resource="entities/Topic.hbm.xml"/>
+    <mapping resource="entities/User.hbm.xml"/>
+    <mapping class="entities.User"/>
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

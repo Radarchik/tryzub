@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entities.User" table="user" schema="tryzub">
+        <id name="username" column="username"/>
+        <property name="userid" column="userid"/>
+        <property name="email" column="email"/>
+        <property name="password" column="password"/>
+        <property name="creationtime" column="creationtime"/>
+        <property name="avatar" column="avatar"/>
+        <property name="city" column="city"/>
+        <property name="quantity" column="quantity"/>
+        <property name="reputation" column="reputation"/>
+        <property name="sign" column="sign"/>
+    </class>
+</hibernate-mapping>
