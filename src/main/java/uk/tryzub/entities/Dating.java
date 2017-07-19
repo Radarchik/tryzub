@@ -1,4 +1,4 @@
-package entities;
+package uk.tryzub.entities;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 /**
- * Created by tszin on 12/07/2017.
+ * Created by tszin on 18/07/2017.
  */
 @Entity
 public class Dating {
@@ -20,7 +20,7 @@ public class Dating {
     private String message;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -30,7 +30,7 @@ public class Dating {
     }
 
     @Basic
-    @Column(name = "section")
+    @Column(name = "section", nullable = false)
     public int getSection() {
         return section;
     }
@@ -40,7 +40,7 @@ public class Dating {
     }
 
     @Basic
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     public Date getDate() {
         return date;
     }
@@ -50,7 +50,7 @@ public class Dating {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -60,7 +60,7 @@ public class Dating {
     }
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 45)
     public String getEmail() {
         return email;
     }
@@ -70,7 +70,7 @@ public class Dating {
     }
 
     @Basic
-    @Column(name = "city")
+    @Column(name = "city", nullable = false, length = 45)
     public String getCity() {
         return city;
     }
@@ -80,7 +80,7 @@ public class Dating {
     }
 
     @Basic
-    @Column(name = "message")
+    @Column(name = "message", nullable = false, length = 1000)
     public String getMessage() {
         return message;
     }

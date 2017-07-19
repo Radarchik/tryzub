@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="uk.tryzub.entities.User" table="user" schema="tryzub">
+        <id name="username">
+            <column name="username" sql-type="varchar(16)" length="16"/>
+        </id>
+        <property name="userid">
+            <column name="userid" sql-type="int(11)"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(255)"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="creationtime">
+            <column name="creationtime" sql-type="timestamp" not-null="true"/>
+        </property>
+        <property name="avatar">
+            <column name="avatar" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="city">
+            <column name="city" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="quantity">
+            <column name="quantity" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="reputation">
+            <column name="reputation" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="sign">
+            <column name="sign" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <set name="postsByUsername" inverse="true">
+            <key>
+                <column name="postauthor"/>
+            </key>
+            <one-to-many not-found="ignore" class="uk.tryzub.entities.Post"/>
+        </set>
+        <set name="topicsByUsername" inverse="true">
+            <key>
+                <column name="topicauthor"/>
+            </key>
+            <one-to-many not-found="ignore" class="uk.tryzub.entities.Topic"/>
+        </set>
+    </class>
+</hibernate-mapping>

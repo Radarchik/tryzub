@@ -1,13 +1,11 @@
-package entities;
+package uk.tryzub.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 /**
- * Created by tszin on 12/07/2017.
+ * Created by tszin on 18/07/2017.
  */
 @Entity
 public class User {
@@ -21,9 +19,11 @@ public class User {
     private Integer quantity;
     private Integer reputation;
     private String sign;
+    private Collection<Post> postsByUsername;
+    private Collection<Topic> topicsByUsername;
 
     @Basic
-    @Column(name = "userid")
+    @Column(name = "userid", nullable = false)
     public int getUserid() {
         return userid;
     }
@@ -33,7 +33,7 @@ public class User {
     }
 
     @Id
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, length = 16)
     public String getUsername() {
         return username;
     }
@@ -43,7 +43,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 255)
     public String getEmail() {
         return email;
     }
@@ -53,7 +53,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 32)
     public String getPassword() {
         return password;
     }
@@ -63,7 +63,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "creationtime")
+    @Column(name = "creationtime", nullable = true)
     public Timestamp getCreationtime() {
         return creationtime;
     }
@@ -73,7 +73,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "avatar")
+    @Column(name = "avatar", nullable = true, length = 255)
     public String getAvatar() {
         return avatar;
     }
@@ -83,7 +83,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "city")
+    @Column(name = "city", nullable = true, length = 45)
     public String getCity() {
         return city;
     }
@@ -93,7 +93,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = true)
     public Integer getQuantity() {
         return quantity;
     }
@@ -103,7 +103,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "reputation")
+    @Column(name = "reputation", nullable = true)
     public Integer getReputation() {
         return reputation;
     }
@@ -113,7 +113,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "sign")
+    @Column(name = "sign", nullable = true, length = 100)
     public String getSign() {
         return sign;
     }
@@ -156,5 +156,23 @@ public class User {
         result = 31 * result + (reputation != null ? reputation.hashCode() : 0);
         result = 31 * result + (sign != null ? sign.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "userByPostauthor")
+    public Collection<Post> getPostsByUsername() {
+        return postsByUsername;
+    }
+
+    public void setPostsByUsername(Collection<Post> postsByUsername) {
+        this.postsByUsername = postsByUsername;
+    }
+
+    @OneToMany(mappedBy = "userByTopicauthor")
+    public Collection<Topic> getTopicsByUsername() {
+        return topicsByUsername;
+    }
+
+    public void setTopicsByUsername(Collection<Topic> topicsByUsername) {
+        this.topicsByUsername = topicsByUsername;
     }
 }
